@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.stack.example.internal.AServiceImpl" configuration-policy="require" activate="activate" deactivate="deactivate" modified="modified">
+    <implementation class="com.stack.example.internal.AServiceImpl"/>
+    <service servicefactory="false">
+        <provide interface="com.stack.example.AService"/>
+    </service>
+    <property name="service.pid" value="com.stack.example.internal.AServiceImpl"/>
+    <reference name="bService" interface="com.stack.example.BService" cardinality="1..1" policy="static" target="(service.pid=*)" bind="bindBService" unbind="unbindBService"/>
+    <reference name="cService" interface="com.stack.example.CService" cardinality="1..1" policy="static" target="(service.pid=*)" bind="bindCService" unbind="unbindCService"/>
+</scr:component>

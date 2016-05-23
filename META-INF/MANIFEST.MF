@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1464023573370
+Build-Jdk: 1.8.0_74
+Built-By: Andreas.Neupert
+Bundle-ManifestVersion: 2
+Bundle-Name: example
+Bundle-SymbolicName: com.stack.example
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.stack.example;uses:="org.osgi.framework,org.osgi.ser
+ vice.cm";version="1.0.0"
+Import-Package: org.osgi.framework;version="[1.8,2)",org.osgi.service.cm
+ ;version="[1.5,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/com.stack.example.internal.BServiceImpl.xml,
+ OSGI-INF/com.stack.example.User.xml,OSGI-INF/com.stack.example.internal
+ .AServiceImpl.xml,OSGI-INF/com.stack.example.internal.CServiceImpl.xml
+Tool: Bnd-3.0.0.201509101326

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" enabled="true" immediate="true" name="com.stack.example.User" activate="activate">
+    <implementation class="com.stack.example.User"/>
+    <property name="service.pid" value="com.stack.example.User"/>
+    <reference name="configAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" cardinality="1..1" policy="static" bind="bindConfigAdmin" unbind="unbindConfigAdmin"/>
+    <reference name="aServices" interface="com.stack.example.AService" cardinality="0..n" policy="dynamic" bind="bind" unbind="unbind"/>
+</scr:component>
