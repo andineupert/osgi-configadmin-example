@@ -33,27 +33,21 @@ public class AServiceImpl implements AService {
     
     public void bindBService(BService bservice) {
         this.bService = bservice;
-        System.out.println("A > " + pid + " > bindB > " + bservice.getPid());
     }
     
     public void unbindBService(BService bservice) {
-        System.out.println("A > " + pid + " > unbindB > " + bservice.getPid());
         if (this.bService == bservice) {
             this.bService = null;
-            System.out.println("A > " + pid + " > unbindB > equal");
         }
     }
     
     public void bindCService(CService cservice) {
         this.cService = cservice;
-        System.out.println("A > " + pid + " > bindC > " + cservice.getPid());
     }
     
     public void unbindCService(CService cservice) {
-        System.out.println("A > " + pid + " > unbindC > " + cservice.getPid());
         if (this.cService == cservice) {
             this.cService = null;
-            System.out.println("A > " + pid + " > unbindC > equal");
         }
     }
     

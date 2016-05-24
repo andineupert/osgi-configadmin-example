@@ -2,14 +2,11 @@ package com.stack.example;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.function.Supplier;
 
 import org.apache.felix.scr.annotations.Activate;
@@ -118,16 +115,19 @@ public class User {
         this.aServices.add(aService);
         System.out.println("> Consumer > bind > " + aService.getPid());
         
-        Supplier<?> sup = () -> {
+        Supplier<AService> sup = () -> {
             aService.hello();
-            return null;
+            return aService;
         };
         CompletableFuture<?> future = CompletableFuture.supplyAsync(sup);        
-        future.whenComplete((Object o, Throwable t) -> {
+        future.whenComplete((Object o, Throwable t) -> {            
             
-            Configuration[] configs = getConfigSet("1");
+            AService service = (AService)o;
+            
+            Configuration[] configs = getConfigSet(service.getPid());
             for (int i = 0; i < configs.length; i++) {
                 try {
+                    System.out.println("Delete service: " + configs[i].getProperties().get("cpid") + " - " + configs[i].getPid());
                     configs[i].delete();
                 } catch (Exception e) {
                     // TODO Auto-generated catch block

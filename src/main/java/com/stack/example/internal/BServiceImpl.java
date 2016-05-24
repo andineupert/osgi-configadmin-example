@@ -25,14 +25,11 @@ public class BServiceImpl implements BService {
     
     public void bindCService(CService cservice) {
         this.cService = cservice;
-        System.out.println("B > " + pid + " > bindC > " + cservice.getPid());
     }
     
     public void unbindCService(CService cservice) {
-        System.out.println("B > " + pid + " > unbindC > " + cservice.getPid());
         if (this.cService == cservice) {
-            this.cService = null;
-            System.out.println("B > " + pid + " > unbindC > equal");
+            this.cService = null;            
         }
     }
     
@@ -55,16 +52,15 @@ public class BServiceImpl implements BService {
     @Override
     public void hello() {
         System.out.println("B > " + pid + " > hello > wait");     
-        double y = 0.0;
         try {
             synchronized (this) {
-                this.wait(5000);
+                this.wait(1000 * Integer.parseInt(pid));
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("B > " + pid + " > hello > finished: " + y);
+        System.out.println("B > " + pid + " > hello > finished");
         this.cService.hello();
     }
     
